@@ -7,6 +7,7 @@
     <modules>
         <module>e3-common</module>
         <module>e3-manager</module>
+        <module>e3-manager-web</module>
     </modules>
     <packaging>pom</packaging>
     <!-- 集中定义依赖版本号 -->
@@ -275,5 +276,8 @@
             <scope>provided</scope>
             编译测试都用它，运行是不用（tomcat会提供，可能引起冲突）
 
-            设置资源路径
+            设置dao的资源路径
+
+            大数据集群管理器：zookeeprt《我们把它当作注册中心》
+            排除jar包
         -->

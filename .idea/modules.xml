@@ -8,7 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/e3-manager/e3-manager-interface/e3-manager-interface.iml" filepath="$PROJECT_DIR$/e3-manager/e3-manager-interface/e3-manager-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/e3-manager/e3-manager-pojo/e3-manager-pojo.iml" filepath="$PROJECT_DIR$/e3-manager/e3-manager-pojo/e3-manager-pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/e3-manager/e3-manager-service/e3-manager-service.iml" filepath="$PROJECT_DIR$/e3-manager/e3-manager-service/e3-manager-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/e3-manager/e3-manager-web/e3-manager-web.iml" filepath="$PROJECT_DIR$/e3-manager/e3-manager-web/e3-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/e3-manager-web/e3-manager-web.iml" filepath="$PROJECT_DIR$/e3-manager-web/e3-manager-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/e3parent.iml" filepath="$PROJECT_DIR$/e3parent.iml" />
     </modules>
   </component>

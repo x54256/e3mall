@@ -3,9 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     <!--*****************配置各种 注解******************-->
 
     <context:component-scan base-package="cn.e3mall.controller" />
@@ -21,6 +22,9 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-
+    <!-- 引用dubbo服务 -->
+    <dubbo:application name="e3-manager-web"/>
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>     <!--绑定我们的注册器-->
+    <dubbo:reference interface="cn.e3mall.service.ItemService" id="itemService" />
 
 </beans>
