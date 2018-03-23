@@ -1,8 +1,12 @@
 package cn.e3mall.service.Impl;
 
 import cn.e3mall.common.pojo.EasyUIDataGridResult;
+import cn.e3mall.common.utils.E3Result;
+import cn.e3mall.common.utils.IDUtils;
+import cn.e3mall.mapper.TbItemDescMapper;
 import cn.e3mall.mapper.TbItemMapper;
 import cn.e3mall.pojo.TbItem;
+import cn.e3mall.pojo.TbItemDesc;
 import cn.e3mall.pojo.TbItemExample;
 import cn.e3mall.pojo.TbItemExample.Criteria;
 import cn.e3mall.service.ItemService;
@@ -12,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,6 +25,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private TbItemMapper itemMapper;
+
+    @Autowired
+    private TbItemDescMapper itemDescMapper;
 
     @Override
     public TbItem getItemById(Long id) {
@@ -59,5 +67,36 @@ public class ItemServiceImpl implements ItemService {
             // 将总条数放入pageBean中
         result.setTotal(total);
         return result;
+    }
+
+    @Override
+    public E3Result save(TbItem item, String desc) {
+        // 保存商品基本信息
+
+        // 1.通过当前日期生成商品的id
+        Long itemId = IDUtils.genItemId();
+        // 2.将id设置到item中
+        item.setId(itemId);
+        // 3.设置zhuangtaima，1-正常，2-下架，3-删除
+        item.setStatus((byte) 1);
+        // 4.设置create，update
+        item.setCreated(new Date());
+        item.setUpdated(new Date());
+        // 5.保存
+        itemMapper.insert(item);
+
+        // 保存商品详情
+        TbItemDesc itemDesc = new TbItemDesc();
+        // 1.设置id，由于是一对一关系，所以与itemid一样
+        itemDesc.setItemId(itemId);
+        // 2.设置其它属性
+        itemDesc.setCreated(new Date());
+        itemDesc.setUpdated(new Date());
+        itemDesc.setItemDesc(desc);
+        // 3.保存
+        itemDescMapper.insert(itemDesc);
+
+        // 返回ok.
+        return E3Result.ok();
     }
 }

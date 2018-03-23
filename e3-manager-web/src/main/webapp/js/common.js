@@ -83,7 +83,7 @@ var E3 = {
         	//给“上传图片按钮”绑定click事件
         	$(e).click(function(){
         		var form = $(this).parentsUntil("form").parent("form");
-        		//打开图片上传窗口
+        		//打开 KindEditor 的图片上传窗口
         		KindEditor.editor(E3.kingEditorParams).loadPlugin('multiimage',function(){
         			var editor = this;
         			editor.plugin.multiImageDialog({
