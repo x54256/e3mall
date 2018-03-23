@@ -13,6 +13,10 @@
     <!-- 配置注解驱动（由于默认的已经过时），用于扫描RequestMapping等注解 -->
     <mvc:annotation-driven />
 
+
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/css/" mapping="/css/**"/>
+
     <!--
     视图解释器
         modelAndView.setViewName("/WEB-INF/jsp/itemList.jsp");  ==>  modelAndView.setViewName("itemList");
@@ -26,5 +30,6 @@
     <dubbo:application name="e3-manager-web"/>
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>     <!--绑定我们的注册器-->
     <dubbo:reference interface="cn.e3mall.service.ItemService" id="itemService" />
+    <dubbo:reference interface="cn.e3mall.service.ItemCatService" id="itemCatService" />
 
 </beans>
