@@ -40,6 +40,7 @@
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>     <!--绑定我们的注册器-->
     <dubbo:reference interface="cn.e3mall.service.ItemService" id="itemService" />
     <dubbo:reference interface="cn.e3mall.service.ItemCatService" id="itemCatService" />
+    <dubbo:reference interface="cn.e3mall.content.service.ContentCategoryService" id="contentCategoryService" />
 
 
     <!-- 读取配置文件 -->

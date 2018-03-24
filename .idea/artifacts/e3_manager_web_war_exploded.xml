@@ -7,8 +7,8 @@
           <element id="module-output" name="e3-manager-web" />
         </element>
         <element id="directory" name="lib">
-          <element id="archive" name="e3-manager-interface-0.0.1-SNAPSHOT.jar">
-            <element id="module-output" name="e3-manager-interface" />
+          <element id="archive" name="e3-content-interface-0.0.1-SNAPSHOT.jar">
+            <element id="module-output" name="e3-content-interface" />
           </element>
           <element id="archive" name="e3-manager-pojo-0.0.1-SNAPSHOT.jar">
             <element id="module-output" name="e3-manager-pojo" />
@@ -28,6 +28,9 @@
           <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:2.2.2" />
           <element id="library" level="project" name="Maven: c3p0:c3p0:0.9.1.1" />
           <element id="library" level="project" name="Maven: fastdfs_client:fastdfs_client:1.25" />
+          <element id="archive" name="e3-manager-interface-0.0.1-SNAPSHOT.jar">
+            <element id="module-output" name="e3-manager-interface" />
+          </element>
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.2.4.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />

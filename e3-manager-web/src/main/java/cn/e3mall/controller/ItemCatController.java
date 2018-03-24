@@ -17,6 +17,10 @@ public class ItemCatController {
     @Autowired
     private ItemCatService itemCatService;
 
+    /**
+     * 异步树的方式获取商品（手机，电脑...）分类信息
+     * @return
+     */
     @RequestMapping("/item/cat/list")
     @ResponseBody
     // 由于第一次请求没有参数，所以要加一个默认值
