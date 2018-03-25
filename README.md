@@ -28,4 +28,5 @@ MySQL数据库`select last_insert_id();`是根据当前事务来取的，所以�
 
 
 Spring引入的properties文件只有一个生效
-
+    
+    但可以修改Spring配置文件：<context:property-placeholder location="classpath:*.properties"/>

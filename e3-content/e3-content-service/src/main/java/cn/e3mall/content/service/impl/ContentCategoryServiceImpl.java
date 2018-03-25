@@ -69,6 +69,15 @@ public class ContentCategoryServiceImpl implements ContentCategoryService {
         //<selectKey keyProperty="id" resultType="long" order="AFTER">
         //      select last_insert_id()
         //    </selectKey>
+        // 判断父节点isParent字段是否为1
+        Long parentId = category.getParentId();
+        TbContentCategory parentCategory = contentCategoryMapper.selectByPrimaryKey(parentId);
+        if (!parentCategory.getIsParent()){
+            parentCategory.setIsParent(true);
+            contentCategoryMapper.insert(parentCategory);
+        }
+
+
         return E3Result.ok(category);
     }
 }

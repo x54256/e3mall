@@ -32,10 +32,10 @@
         <!--<property name="maxUploadSize" value="5242880"/>-->
     <!--</bean>-->
 
-    <!-- 引用dubbo服务 -->
-    <!--<dubbo:application name="e3-manager-web"/>-->
-    <!--<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>     &lt;!&ndash;绑定我们的注册器&ndash;&gt;-->
-    <!--<dubbo:reference interface="cn.e3mall.service.ItemService" id="itemService" />-->
+     <!--引用dubbo服务 -->
+    <dubbo:application name="e3-manager-web"/>
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>     <!--绑定我们的注册器-->
+    <dubbo:reference interface="cn.e3mall.content.service.ContentService" id="contentService" />
     <!--<dubbo:reference interface="cn.e3mall.service.ItemCatService" id="itemCatService" />-->
 
 
