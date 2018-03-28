@@ -12,6 +12,7 @@
         <module>e3-content</module>
         <module>e3-search</module>
         <module>e3-search-web</module>
+        <module>e3-items-web</module>
     </modules>
     <packaging>pom</packaging>
     <!-- 集中定义依赖版本号 -->

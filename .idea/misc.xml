@@ -2,6 +2,7 @@
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/e3-content/e3-content-service" />
+    <file type="web" url="file://$PROJECT_DIR$/e3-items-web" />
     <file type="web" url="file://$PROJECT_DIR$/e3-manager-web" />
     <file type="web" url="file://$PROJECT_DIR$/e3-manager/e3-manager-service" />
     <file type="web" url="file://$PROJECT_DIR$/e3-portal-web" />
@@ -17,6 +18,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/e3-content/pom.xml" />
+        <option value="$PROJECT_DIR$/e3-item-web/pom.xml" />
         <option value="$PROJECT_DIR$/e3-manager/e3-manager-web/pom.xml" />
       </set>
     </option>

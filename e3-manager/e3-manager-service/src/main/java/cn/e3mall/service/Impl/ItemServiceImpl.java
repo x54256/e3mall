@@ -1,8 +1,10 @@
 package cn.e3mall.service.Impl;
 
+import cn.e3mall.common.jedis.JedisClient;
 import cn.e3mall.common.pojo.EasyUIDataGridResult;
 import cn.e3mall.common.utils.E3Result;
 import cn.e3mall.common.utils.IDUtils;
+import cn.e3mall.common.utils.JsonUtils;
 import cn.e3mall.mapper.TbItemDescMapper;
 import cn.e3mall.mapper.TbItemMapper;
 import cn.e3mall.pojo.TbItem;
@@ -12,7 +14,9 @@ import cn.e3mall.pojo.TbItemExample.Criteria;
 import cn.e3mall.service.ItemService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
@@ -39,8 +43,27 @@ public class ItemServiceImpl implements ItemService {
     @Resource/*(name = "topicDestination")*/// 使用的是广播方式
     private Destination topicDestination;
 
+    @Autowired
+    private JedisClient jedisClient;
+
+    @Value("${REDIS_ITEM_PRE}")
+    private String REDIS_ITEM_PRE;
+
+    @Value("${ITEM_CACHE_EXPIRE}")
+    private Integer ITEM_CACHE_EXPIRE;
+
+
     @Override
     public TbItem getItemById(Long id) {
+
+        try {
+            String json = jedisClient.get(REDIS_ITEM_PRE + id + ":BASE");
+            if (StringUtils.isNoneBlank(json)){
+                return JsonUtils.jsonToPojo(json,TbItem.class);
+            }
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
         // 逆向工程两种通过主键查询的方法
         // 方法一：
         // itemMapper.selectByPrimaryKey(id);
@@ -53,6 +76,12 @@ public class ItemServiceImpl implements ItemService {
         List<TbItem> itemList = itemMapper.selectByExample(example);
         // 3.返回
         if (itemList!=null&&itemList.size()>0){
+            try {
+                jedisClient.set(REDIS_ITEM_PRE + id + ":BASE",JsonUtils.objectToJson(itemList.get(0)));
+                jedisClient.expire(REDIS_ITEM_PRE + id + ":BASE",ITEM_CACHE_EXPIRE);
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
             return itemList.get(0);
         }
 
@@ -119,5 +148,29 @@ public class ItemServiceImpl implements ItemService {
         // ========================================
         // 返回ok.
         return E3Result.ok();
+    }
+
+    @Override
+    public TbItemDesc getItemDescById(Long itemId) {
+        try {
+            String json = jedisClient.get(REDIS_ITEM_PRE + itemId + ":DESC");
+            if (StringUtils.isNoneBlank(json)){
+                return JsonUtils.jsonToPojo(json,TbItemDesc.class);
+            }
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+        // 这个方法会连大文本一起返回
+        TbItemDesc itemDesc = itemDescMapper.selectByPrimaryKey(itemId);
+
+        try {
+            jedisClient.set(REDIS_ITEM_PRE + itemId + ":DESC",JsonUtils.objectToJson(itemDesc));
+            jedisClient.expire(REDIS_ITEM_PRE + itemId + ":DESC",ITEM_CACHE_EXPIRE);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        return itemDesc;
+
     }
 }
