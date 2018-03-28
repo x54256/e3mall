@@ -40,6 +40,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-messaging:4.2.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.2.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:3.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.apache.activemq:activemq-all:5.11.2" />
           <element id="library" level="project" name="Maven: com.alibaba:dubbo:2.5.3" />
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.15.0-GA" />
           <element id="library" level="project" name="Maven: org.apache.zookeeper:zookeeper:3.4.7" />

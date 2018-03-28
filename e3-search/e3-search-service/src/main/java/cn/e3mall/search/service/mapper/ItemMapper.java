@@ -9,4 +9,5 @@ public interface ItemMapper {
 
     List<SearchResult> selectAllItem();
 
+    SearchResult selectItemById(Long itemId);
 }

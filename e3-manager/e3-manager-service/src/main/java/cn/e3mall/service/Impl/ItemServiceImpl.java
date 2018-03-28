@@ -13,9 +13,13 @@ import cn.e3mall.service.ItemService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+import javax.jms.*;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +32,12 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private TbItemDescMapper itemDescMapper;
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
+    @Resource/*(name = "topicDestination")*/// 使用的是广播方式
+    private Destination topicDestination;
 
     @Override
     public TbItem getItemById(Long id) {
@@ -74,7 +84,7 @@ public class ItemServiceImpl implements ItemService {
         // 保存商品基本信息
 
         // 1.通过当前日期生成商品的id
-        Long itemId = IDUtils.genItemId();
+        final Long itemId = IDUtils.genItemId();
         // 2.将id设置到item中
         item.setId(itemId);
         // 3.设置zhuangtaima，1-正常，2-下架，3-删除
@@ -95,7 +105,18 @@ public class ItemServiceImpl implements ItemService {
         itemDesc.setItemDesc(desc);
         // 3.保存
         itemDescMapper.insert(itemDesc);
+        // ==============实现更新索引================
 
+        jmsTemplate.send(topicDestination, new MessageCreator() {
+
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                TextMessage textMessage = session.createTextMessage(itemId + "");
+                return textMessage;
+            }
+        });
+
+        // ========================================
         // 返回ok.
         return E3Result.ok();
     }

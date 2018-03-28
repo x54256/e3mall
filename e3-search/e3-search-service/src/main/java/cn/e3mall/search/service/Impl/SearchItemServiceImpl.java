@@ -53,4 +53,27 @@ public class SearchItemServiceImpl implements SearchItemService {
         }
 
     }
+
+    @Override
+    public void addDocument(Long itemId) {
+        try {
+            // 1、根据商品id查询商品信息
+            SearchResult searchResult = itemMapper.selectItemById(itemId);
+            // 创建文档对象
+            SolrInputDocument document = new SolrInputDocument();
+            // 向文档对象中添加域
+            document.addField("id", searchResult.getId());
+            document.addField("item_title", searchResult.getTitle());
+            document.addField("item_sell_point", searchResult.getSell_point());
+            document.addField("item_price", searchResult.getPrice());
+            document.addField("item_image", searchResult.getImage());
+            document.addField("item_category_name", searchResult.getCategory_name());
+            // 将文档添加到索引库中
+            solrServer.add(document);
+            // 提交
+            solrServer.commit();
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }
