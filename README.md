@@ -40,4 +40,21 @@ Spring引入的properties文件只有一个生效
     </bean>
     
     
-返回逻辑视图时要去掉`@ResponseBody`注解
+返回逻辑视图时要去掉`@ResponseBody`（代表直接向浏览器写内容，如果不是字符串，转成json格式）注解
+
+
+Tomcat的强项是处理JSP和Servlet，所以处理静态页面可以使用任意http服务器（nginx）
+
+
+由于建立Tomcat集群后会出现只有一台Tomcat服务器上有Session，所以就需要Session共享；但`Session复制`会有Tomcat节点上限
+所以我们使用sso单点登录系统（来解决session共享问题）
+
+
+分布式事务：一般都没有使用这种的，一般都是使用MQ来解决的
+
+
+为了保证我们模拟的session在不同浏览器上的状态不同，所以我们不能使用userId，要模仿session的sessionId使用UUID
+
+1）设置响应application/json
+2）jsonP
+3）跨域戴cookie

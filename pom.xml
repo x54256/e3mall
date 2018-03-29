@@ -13,6 +13,8 @@
         <module>e3-search</module>
         <module>e3-search-web</module>
         <module>e3-items-web</module>
+        <module>e3-sso-web</module>
+        <module>e3-sso</module>
     </modules>
     <packaging>pom</packaging>
     <!-- 集中定义依赖版本号 -->
@@ -44,7 +46,7 @@
         <zookeeper.version>3.4.7</zookeeper.version>
         <zkclient.version>0.1</zkclient.version>
         <activemq.version>5.11.2</activemq.version>
-        <freemarker.version>2.3.23</freemarker.version>
+        <freemarker.version>2.3.19</freemarker.version>
         <quartz.version>2.2.2</quartz.version>
     </properties>
 

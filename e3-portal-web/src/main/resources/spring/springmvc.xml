@@ -33,7 +33,7 @@
     <!--</bean>-->
 
      <!--引用dubbo服务 -->
-    <dubbo:application name="e3-manager-web"/>
+    <dubbo:application name="e3-manager-web"/>123
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>     <!--绑定我们的注册器-->
     <dubbo:reference interface="cn.e3mall.content.service.ContentService" id="contentService" />
     <!--<dubbo:reference interface="cn.e3mall.service.ItemCatService" id="itemCatService" />-->
