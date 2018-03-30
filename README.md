@@ -55,6 +55,22 @@ Tomcat的强项是处理JSP和Servlet，所以处理静态页面可以使用任�
 
 为了保证我们模拟的session在不同浏览器上的状态不同，所以我们不能使用userId，要模仿session的sessionId使用UUID
 
-1）设置响应application/json
-2）jsonP
-3）跨域戴cookie
+    1）设置响应application/json
+    2）jsonP
+    3）跨域戴cookie
+
+
+**包装数据类型**不能使用==判断，因为判断的是内存地址
+
+
+406错误：
+
+    1）没加Jackson这个包
+    2）不允许*.html返回json数据（可以再添加一个前端控制器为*.action）
+    
+redis是单线程的
+
+
+SpringMVC重定向方式
+
+    return "redirect:/cart/cart.html";
