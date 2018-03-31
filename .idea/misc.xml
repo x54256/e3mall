@@ -7,6 +7,8 @@
     <file type="web" url="file://$PROJECT_DIR$/e3-items-web" />
     <file type="web" url="file://$PROJECT_DIR$/e3-manager-web" />
     <file type="web" url="file://$PROJECT_DIR$/e3-manager/e3-manager-service" />
+    <file type="web" url="file://$PROJECT_DIR$/e3-order-web" />
+    <file type="web" url="file://$PROJECT_DIR$/e3-order/e3-order-service" />
     <file type="web" url="file://$PROJECT_DIR$/e3-portal-web" />
     <file type="web" url="file://$PROJECT_DIR$/e3-search-web" />
     <file type="web" url="file://$PROJECT_DIR$/e3-search/e3-search-service" />
@@ -24,6 +26,7 @@
         <option value="$PROJECT_DIR$/e3-content/pom.xml" />
         <option value="$PROJECT_DIR$/e3-item-web/pom.xml" />
         <option value="$PROJECT_DIR$/e3-manager/e3-manager-web/pom.xml" />
+        <option value="$PROJECT_DIR$/e3-order/pom.xml" />
       </set>
     </option>
   </component>

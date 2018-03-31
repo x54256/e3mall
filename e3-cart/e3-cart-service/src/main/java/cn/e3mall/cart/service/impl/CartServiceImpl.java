@@ -116,4 +116,18 @@ public class CartServiceImpl implements CartService {
         // 删除
         jedisClient.hdel(REDIS_CART_PRE + ":" + id, itemId + "");
     }
+
+    /**
+     * 清空购物车
+     * @param id
+     */
+    @Override
+    public void clearCartItem(Long id) {
+        // 1.获取当前用户的购物车中所有的item
+        List<String> hvals = jedisClient.hvals(REDIS_CART_PRE + ":" + id);
+        // 2.循环调用，删除购物车中的商品
+        for (String json:hvals) {
+            deleteCartItem(id,JsonUtils.jsonToPojo(json,TbItem.class).getId());
+        }
+    }
 }

@@ -74,3 +74,9 @@ redis是单线程的
 SpringMVC重定向方式
 
     return "redirect:/cart/cart.html";
+    
+    
+1）将redirectURL传递给页面
+2）response.sendRedirct("xxx"+"?redirct="+request.getPath())
+3）接收多个pojo的参数，再封装一次pojo
+4）service层不能用try,catch；因为有事务intercept

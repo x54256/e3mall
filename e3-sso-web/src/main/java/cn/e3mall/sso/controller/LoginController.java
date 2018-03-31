@@ -5,6 +5,7 @@ import cn.e3mall.common.utils.E3Result;
 import cn.e3mall.sso.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,8 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LoginController {
 
+    /**
+     * 修改登录页面
+     * @param redirect
+     * @return
+     */
     @RequestMapping("/page/login")
-    public String showLogin(){
+    public String showLogin(Model model,String redirect){
+
+        model.addAttribute("redirect",redirect);
+
         return "login";
     }
 

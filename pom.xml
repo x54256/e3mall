@@ -17,6 +17,8 @@
         <module>e3-sso</module>
         <module>e3-cart-web</module>
         <module>e3-cart</module>
+        <module>e3-order-web</module>
+        <module>e3-order</module>
     </modules>
     <packaging>pom</packaging>
     <!-- 集中定义依赖版本号 -->
